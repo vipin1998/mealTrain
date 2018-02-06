@@ -27,7 +27,7 @@
                 <div>
                     <a mat-raised-button href="tel:+85212345678"><i class="fa fa-phone"></i> Call</a>
                     <a mat-raised-button><i class="fa fa-skype"></i> Skype</a>
-                    <a mat-raised-button href="mailto:confusion@food.net"><i class="fa fa-envelope-o"></i> Email</a>
+                    <a mat-raised-button href="mailto:vipindhangar1998@gmail.com"><i class="fa fa-envelope-o"></i> Email</a>
                 </div>
             </div>
           <div fxFlex="40">
@@ -41,38 +41,38 @@
         <p> {{ feedbackForm.value | json}} {{feedbackForm.status | json}}</p>
         <form novalidate [formGroup]="feedbackForm" (ngSubmit)="onSubmit()">
           <p>
-            <mat-input-container class="half-width" dividerColor="{{(feedbackForm.get('firstname').hasError('required') && feedbackForm.get('firstname').touched) ? 'warn' : 'primary'}}">
+            <mat-input-container class="half-width" dividerColor="{{ formErrors.firstname ? 'warn' : 'primary'}}">
               <input matInput formControlName="firstname" placeholder="First Name" type="text" required>
               <mat-hint>
-                <span [hidden] = "!(feedbackForm.get('firstname').hasError('required') && feedbackForm.get('firstname').touched)">
-                  First Name is Required
+                <span [hidden] = "!(formErrors.firstname)">
+                  {{formErrors.firstname}}
                 </span>
               </mat-hint>
             </mat-input-container>
             <mat-input-container class="half-width"
-            dividerColor="{{(feedbackForm.get('lastname').hasError('required') && feedbackForm.get('lastname').touched) ? 'warn' : 'primary'}}">
+            dividerColor="{{formErrors.lastname ? 'warn' : 'primary'}}">
               <input matInput formControlName="lastname" placeholder="Last Name" type="text" required>
               <mat-hint>
-                  <span [hidden] = "!(feedbackForm.get('lastname').hasError('required') && feedbackForm.get('lastname').touched)">
-                    Last Name is Required
+                  <span [hidden] = "!(formErrors.lastname)">
+                      {{formErrors.lastname}}
                   </span>
                 </mat-hint>
             </mat-input-container>
             <mat-input-container class="half-width"
-            dividerColor="{{(feedbackForm.get('mobile').hasError('required') && feedbackForm.get('mobile').touched) ? 'warn' : 'primary'}}">
-              <input matInput formControlName="mobile" placeholder="Mobile" type="tel" required>
+            dividerColor="{{ formErrors.mobile ? 'warn' : 'primary'}}">
+              <input matInput formControlName="mobile" placeholder="Mobile" type="tel" pattern="[0-9]*" required>
               <mat-hint>
-                  <span [hidden] = "!(feedbackForm.get('mobile').hasError('required') && feedbackForm.get('mobile').touched)">
-                     Mobile Number is Required
+                  <span [hidden] = "!(formErrors.mobile)">
+                     {{formErrors.mobile}}
                   </span>
                 </mat-hint>
             </mat-input-container>
             <mat-input-container class="half-width"
-            dividerColor="{{(feedbackForm.get('email').hasError('required') && feedbackForm.get('email').touched) ? 'warn' : 'primary'}}">
-              <input matInput formControlName="email" placeholder="Email" type="email" required>
+            dividerColor="{{formErrors.email ? 'warn' : 'primary'}}">
+              <input matInput formControlName="email" placeholder="Email" type="email" email required>
               <mat-hint>
-                  <span [hidden] = "!(feedbackForm.get('email').hasError('required') && feedbackForm.get('email').touched)">
-                    Email is Required
+                  <span [hidden] = "!(formErrors.email)">
+                    {{formErrors.email}}
                   </span>
                 </mat-hint>
             </mat-input-container>
