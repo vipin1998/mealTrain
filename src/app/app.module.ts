@@ -13,6 +13,8 @@ import { HttpModule } from '@angular/http';
 
 import 'hammerjs';
 
+import { RestangularModule ,Restangular} from 'ngx-restangular';
+import { RestangularConfigFactory } from './shared/restConfig'
 
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
@@ -31,6 +33,7 @@ import { ProcessHttpmsgService } from './services/process-httpmsg.service'
 
 import {AppRoutingModule} from './app-routing/app-routing.module';
 import { LoginComponent } from './login/login.component';
+import { HighlightDirective } from './directives/highlight.directive';
 
 
 @NgModule({
@@ -43,7 +46,8 @@ import { LoginComponent } from './login/login.component';
     HomeComponent,
     AboutComponent,
     ContactComponent,
-    LoginComponent
+    LoginComponent,
+    HighlightDirective
   ],
   imports: [
     BrowserModule,
@@ -58,7 +62,8 @@ import { LoginComponent } from './login/login.component';
     MatSlideToggleModule, MatToolbarModule, MatListModule, MatGridListModule,
     MatCardModule, MatIconModule, MatProgressSpinnerModule, MatDialogModule,MatSidenavModule,
 
-    AppRoutingModule
+    AppRoutingModule,
+    RestangularModule.forRoot(RestangularConfigFactory)
 
   ],
   providers: [ DishService,PromotionService,LeaderService,ProcessHttpmsgService , { provide : 'BaseURL' ,useValue : baseURL}],
