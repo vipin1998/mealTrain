@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatCheckboxModule, MatDatepickerModule, MatFormFieldModule,
-  MatInputModule, MatRadioModule, MatSelectModule, MatSliderModule,
+  MatInputModule, MatRadioModule, MatSelectModule, MatSliderModule,MatNativeDateModule,
   MatSlideToggleModule, MatToolbarModule, MatListModule, MatGridListModule,MatSidenavModule,
   MatCardModule, MatIconModule, MatProgressSpinnerModule, MatDialogModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -34,6 +34,9 @@ import { ProcessHttpmsgService } from './services/process-httpmsg.service'
 import {AppRoutingModule} from './app-routing/app-routing.module';
 import { LoginComponent } from './login/login.component';
 import { HighlightDirective } from './directives/highlight.directive';
+import { MyordersComponent } from './myorders/myorders.component';
+import { SearchFoodComponent } from './search-food/search-food.component';
+import { TrainStationsComponent } from './train-stations/train-stations.component';
 
 
 @NgModule({
@@ -47,7 +50,10 @@ import { HighlightDirective } from './directives/highlight.directive';
     AboutComponent,
     ContactComponent,
     LoginComponent,
-    HighlightDirective
+    HighlightDirective,
+    MyordersComponent,
+    SearchFoodComponent,
+    TrainStationsComponent
   ],
   imports: [
     BrowserModule,
@@ -58,7 +64,7 @@ import { HighlightDirective } from './directives/highlight.directive';
     HttpModule ,
 
     MatButtonModule, MatCheckboxModule, MatDatepickerModule, MatFormFieldModule,
-    MatInputModule, MatRadioModule, MatSelectModule, MatSliderModule,
+    MatInputModule, MatRadioModule, MatSelectModule, MatSliderModule,MatNativeDateModule,
     MatSlideToggleModule, MatToolbarModule, MatListModule, MatGridListModule,
     MatCardModule, MatIconModule, MatProgressSpinnerModule, MatDialogModule,MatSidenavModule,
 
