@@ -1,31 +1,63 @@
-<mat-toolbar color="primary">
-  <span><img src="/assets/images/logo.png" height=30 width=41></span>
-  <a mat-button routerLink='/home' routerLinkActive='active'><span class="fa fa-home fa-lg"></span> Home</a>
-  <a mat-button routerLink='/about' routerLinkActive='active'><span class="fa fa-info fa-lg"></span> About</a>
-  <a mat-button routerLink='/menu' routerLinkActive='active'><span class="fa fa-list fa-lg"></span> Menu</a>
-  <a mat-button routerLink='/myorders' routerLinkActive='active' ><span class="fa fa-user-o fa-lg"></span> My Orders</a>  
-  <a mat-button routerLink='/contactus' routerLinkActive='active'><span class="fa fa-address-card fa-lg"></span> Contact</a>
-  <span class="flex-spacer"></span>
-  <a mat-button (click)="openLogInForm()"><span class="fa fa-sign-in fa-lg"></span> LogIn</a>
-  <a mat-button><span class="fa fa-user-plus fa-lg"></span> Register </a>
-</mat-toolbar>
+<div fxShow="true" fxHide.lt-md="true">
+  <mat-toolbar color="primary">
+    <span><img src="/assets/images/logo.png" height=30 width=41></span>
+      <a mat-button routerLink='/home' routerLinkActive='active'><span class="fa fa-home fa-lg"></span> Home</a>
+      <a mat-button routerLink='/about' routerLinkActive='active'><span class="fa fa-info fa-lg"></span> About</a>
+      <a mat-button routerLink='/menu' routerLinkActive='active'><span class="fa fa-list fa-lg"></span> Menu</a>
+      <a mat-button routerLink='/myorders' routerLinkActive='active' ><span class="fa fa-user-o fa-lg"></span> My Orders</a>  
+      <a mat-button routerLink='/contactus' routerLinkActive='active'><span class="fa fa-address-card fa-lg"></span> Contact</a>
+      <span class="flex-spacer"></span>
+      <a mat-button (click)="openLogInForm()"><span class="fa fa-sign-in fa-lg"></span> LogIn</a>
+      <a mat-button><span class="fa fa-user-plus fa-lg"></span> Register </a>
+  </mat-toolbar>
+</div>
+<div fxShow="true" fxHide.gt-sm="true">
+  <mat-toolbar color="primary">
+      <span><img src="/assets/images/logo.png" height=30 width=41></span>
+      <a mat-icon-button (click)="sidenav.toggle()"><mat-icon>menu</mat-icon></a>
+  </mat-toolbar>
+</div>
 
-<div class="container jumbotron"
-    fxLayout="row"
-    fxLayout.sm="column" 
-    fxLayout.xs="column" 
-    fxLayoutAlign.xs="start center"
-    fxLayoutAlign.sm="start center" 
-    fxLayoutAlign.gt-sm="center center" 
-    fxLayoutGap="10px">
 
-  <div fxFlex fxFlex.gt-sm="50%">
-    <h1>MealTrain</h1>
-    <p>We take inspiration from the World's best cuisines, and create a unique fusion experience. Our lipsmacking creations
-      will tickle your culinary senses!</p>
-  </div>
-  <div fxFlex fxFlex.gt-sm="20%">
-    <img src="/assets/images/logo.png" alt="Logo">
-  </div>
-  <div fxFlex></div>
+<div style="height: 50vh;">
+<mat-sidenav-container fxFlexFill class="flex-container">
+    <mat-sidenav #sidenav fxLayout="column">
+      <div fxLayout="column">
+        <a mat-button (click)="sidenav.toggle()" routerLink='/home'><span class="fa fa-home fa-lg"></span> Home</a>
+        <a mat-button (click)="sidenav.toggle()" routerLink='/about'><span class="fa fa-info fa-lg"></span> About </a>
+        <a mat-button (click)="sidenav.toggle()" routerLink='/menu'><span class="fa fa-list fa-lg"></span> Menu</a>
+        <a mat-button (click)="sidenav.toggle()" routerLink='/myorders'><span class="fa fa-user-o fa-lg"></span> My Orders</a>  
+        <a mat-button (click)="sidenav.toggle()" routerLink='/contactus'><span class="fa fa-address-card fa-lg"></span> Contact</a>
+        <a mat-button (click)="openLogInForm()"><span class="fa fa-sign-in fa-lg"></span> LogIn</a>
+        <a mat-button><span class="fa fa-user-plus fa-lg"></span> Register </a>
+      </div>
+
+    </mat-sidenav>
+    <mat-sidenav-content fxFlexFill>
+
+        <div class="container jumbotron"
+        fxLayout="row"
+        fxLayout.sm="column" 
+        fxLayout.xs="column" 
+        fxLayoutAlign.xs="start center"
+        fxLayoutAlign.sm="start center" 
+        fxLayoutAlign.gt-sm="center center" 
+        fxLayoutGap="10px">
+
+            <div fxFlex fxFlex.gt-sm="50%">
+              <h1>MealTrain</h1>
+              <p>We take inspiration from the World's best cuisines, and create a unique fusion experience. Our lipsmacking creations
+                will tickle your culinary senses!</p>
+                <p>We take inspiration from the World's best cuisines, and create a unique fusion experience. Our lipsmacking creations
+                    will tickle your culinary senses!</p>
+                
+            </div>
+                <div fxFlex fxFlex.gt-sm="20%">
+                  <img src="/assets/images/logo.png" alt="Logo">
+                </div>
+            <div fxFlex></div>
+        </div>
+
+    </mat-sidenav-content>
+</mat-sidenav-container>
 </div>

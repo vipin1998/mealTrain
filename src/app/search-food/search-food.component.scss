@@ -1,14 +1,15 @@
-$lt-gray: #ddd;
-$background-dark: rgba(113, 153, 180, 0.726);
-$background-light: #9575CD;
-$background-pale: #D1C4E9;
-
-@mixin zero-margin($pad-up-down, $pad-left-right) {
-    margin: 0px auto;
-    padding: $pad-up-down $pad-left-right;
+.main-body{
+    max-width: 1300px;
+    background-color: #FFF;
+    margin: 40px auto 0 auto;
+    padding: 20px 50px;
+    display: flex
+}
+.form{
+    padding-left: 10%; 
+    flex: 1
 }
 
-.backGround{
-    background-color: $background-dark;
-    @include zero-margin(20px, 0px);
+.feature{
+    flex: 2
 }
