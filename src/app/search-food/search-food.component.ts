@@ -13,6 +13,7 @@ export class SearchFoodComponent implements OnInit {
 
   queryForm : FormGroup;
   query : Query;
+  errMess: string;
   formErrors = {
     'train_number' : '',
     'journey_date' : ''

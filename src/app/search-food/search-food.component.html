@@ -1,37 +1,33 @@
-<div class="main-body">
-    <div class="form">
-        <h2> Order Food at MealTrian</h2>
-        <form novalidate [formGroup]="queryForm" (ngSubmit)="onSubmit()">
-            <p>
-                <mat-input-container dividerColor="{{ formErrors.train_number ? 'warn' : 'primary'}}">
-                  <input matInput formControlName="train_number" placeholder="Train Number" type="text" required>
-                  <mat-hint>
-                    <span [hidden] = "!(formErrors.train_number)">
-                      {{formErrors.train_number}}
-                    </span>
-                  </mat-hint>
-                </mat-input-container>
-            </p>
-            <p>
-                
-                <mat-form-field dividerColor="{{ formErrors.journey_date ? 'warn' : 'primary'}}">
-                    <input matInput formControlName="journey_date" [matDatepicker]="picker" placeholder="Choose a date">
-                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
-                    <mat-hint>
-                      <span [hidden] = "!(formErrors.journey_date)">
-                        {{formErrors.journey_date}}
-                      </span>
-                    </mat-hint>
-                  </mat-form-field>
 
-            </p>
-            <button type="submit" mat-button class="background-primary text-floral-white" [disabled]="queryForm.invalid">
-                Search Food
-              </button>
-        </form>
-    </div>
-    <div class="feature" style="text-align:center;">
-        <h2> Benefits of MealTrain </h2>
-    </div>
-</div>
+            <div class="form" class="main">
+            <h2> Order Food at MealTrian</h2>
+            <form novalidate [formGroup]="queryForm" (ngSubmit)="onSubmit()">
+                <p>
+                    <mat-input-container dividerColor="{{ formErrors.train_number ? 'warn' : 'primary'}}">
+                      <input matInput formControlName="train_number" placeholder="Train Number" type="text" required>
+                      <mat-hint>
+                        <span [hidden] = "!(formErrors.train_number)">
+                          {{formErrors.train_number}}
+                        </span>
+                      </mat-hint>
+                    </mat-input-container>
+                </p>
+                <p>
+                    
+                    <mat-form-field dividerColor="{{ formErrors.journey_date ? 'warn' : 'primary'}}">
+                        <input matInput formControlName="journey_date" [matDatepicker]="picker" placeholder="Choose a date">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                        <mat-hint>
+                          <span [hidden] = "!(formErrors.journey_date)">
+                            {{formErrors.journey_date}}
+                          </span>
+                        </mat-hint>
+                      </mat-form-field>
+
+                </p>
+                <button type="submit" [routerLink] ="['/train', queryForm.value.train_number]" mat-button class="background-primary text-floral-white" [disabled]="queryForm.invalid">
+                    Search Food
+                  </button>
+            </form>
+          </div>

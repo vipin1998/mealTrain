@@ -1,0 +1,56 @@
+<mat-toolbar mat-dialog-title color="primary">Register
+    <span class="flex-spacer"></span>
+      <button mat-button mat-dialog-close>&times;</button>
+  </mat-toolbar>
+  
+  <div>
+    <p>{{ user | json }}</p>
+   <form novalidate #loginForm="ngForm" (ngSubmit)="onSubmit()">
+    <mat-dialog-content>
+      <p>
+        <mat-input-container dividerColor="{{fname.invalid && !fname.pristine ? 'warn' : 'primary'}}">
+            <input matInput placeholder="Enter Your Full Name" type="text" [(ngModel)]="user.fname" name="fname" #fname="ngModel" required>
+            <mat-hint>
+              <span [hidden]="fname.pristine">
+                <span [hidden]="!fname.errors?.required">
+                    Your Name is Required
+                </span>
+              </span>
+            </mat-hint>
+          </mat-input-container>
+        <mat-input-container dividerColor="{{mobile.invalid && !mobile.pristine ? 'warn' : 'primary'}}">
+
+          <input matInput placeholder="Mobile Number" type="text" [(ngModel)]="user.mobile" name="mobile" #mobile="ngModel" required>
+          <mat-hint>
+            <span [hidden]="mobile.pristine">
+              <span [hidden]="!mobile.errors?.required">
+                  Mobile Number is Required
+              </span>
+            </span>
+          </mat-hint>
+        </mat-input-container>
+        <mat-input-container dividerColor="{{password.invalid && !password.pristine ? 'warn' : 'primary'}}">
+          <input matInput placeholder="Password" type="password" [(ngModel)]="user.password" name="password" #password="ngModel" required>
+          <mat-hint>
+            <span [hidden]="password.pristine">
+              <span [hidden]="!password.errors?.required">
+                  Password is Required
+              </span>
+            </span>
+          </mat-hint>
+          </mat-input-container>
+        <mat-select placeholder="Sex" [(ngModel)]="user.sex" name="sex">
+          <mat-option *ngFor="let ctype of sex" [value]="ctype">
+            {{ctype}}
+          </mat-option>
+        </mat-select>
+      </p>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+      <span class="flex-spacer"> </span>
+      <button mat-button mat-dialog-close>Cancel</button>
+      <button type="submit" mat-button class="background-primary text-floral-white" [disabled]="loginForm.form.invalid">Register</button> 
+    </mat-dialog-actions>
+   </form>
+  </div>
+

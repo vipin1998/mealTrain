@@ -8,8 +8,9 @@ import { MatButtonModule, MatCheckboxModule, MatDatepickerModule, MatFormFieldMo
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms'; 
 import { ReactiveFormsModule } from '@angular/forms'; 
-import { baseURL } from './shared/baseurl'
+import { baseURL , mongoURL } from './shared/baseurl'
 import { HttpModule } from '@angular/http';
+import { HttpClient,HttpClientModule } from '@angular/common/http';
 
 import 'hammerjs';
 
@@ -37,6 +38,10 @@ import { HighlightDirective } from './directives/highlight.directive';
 import { MyordersComponent } from './myorders/myorders.component';
 import { SearchFoodComponent } from './search-food/search-food.component';
 import { TrainStationsComponent } from './train-stations/train-stations.component';
+import { TrainService } from './services/train.service';
+import { SignupComponent } from './signup/signup.component';
+import { UserService } from './services/user.service';
+
 
 
 @NgModule({
@@ -53,7 +58,8 @@ import { TrainStationsComponent } from './train-stations/train-stations.componen
     HighlightDirective,
     MyordersComponent,
     SearchFoodComponent,
-    TrainStationsComponent
+    TrainStationsComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
@@ -62,6 +68,7 @@ import { TrainStationsComponent } from './train-stations/train-stations.componen
     FormsModule,
     ReactiveFormsModule,
     HttpModule ,
+    HttpClientModule,
 
     MatButtonModule, MatCheckboxModule, MatDatepickerModule, MatFormFieldModule,
     MatInputModule, MatRadioModule, MatSelectModule, MatSliderModule,MatNativeDateModule,
@@ -72,8 +79,9 @@ import { TrainStationsComponent } from './train-stations/train-stations.componen
     RestangularModule.forRoot(RestangularConfigFactory)
 
   ],
-  providers: [ DishService,PromotionService,LeaderService,ProcessHttpmsgService , { provide : 'BaseURL' ,useValue : baseURL}],
-  entryComponents : [LoginComponent],
+  providers: [ DishService,PromotionService,LeaderService,ProcessHttpmsgService ,TrainService,UserService,HttpClientModule,
+     { provide : 'BaseURL' ,useValue : baseURL} , { provide : 'MongoURL' ,useValue : mongoURL}],
+  entryComponents : [LoginComponent,SignupComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

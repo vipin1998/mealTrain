@@ -12,7 +12,7 @@ import { TrainStationsComponent } from '../train-stations/train-stations.compone
 
 export const routes : Routes = [
     {path : 'home' , component : HomeComponent},
-    {path : 'menu' , component : MenuComponent},
+    {path : 'menu/:stCode' , component : MenuComponent},
     {path : 'about' , component : AboutComponent},
     {path: 'contactus', component: ContactComponent},
     {path : 'myorders' , component : MyordersComponent},

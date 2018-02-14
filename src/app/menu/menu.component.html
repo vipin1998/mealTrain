@@ -16,6 +16,13 @@
       <img height="200px" src="{{BaseURL + dish.image}}" alt={{dish.name}}>
       <mat-grid-tile-footer>
         <h1 mat-line> {{dish.name | uppercase}} </h1>
+        <span class="flex-spacer"></span>
+        <button mat-icon-button>
+            <span style="color: red;" class="fa fa-plus fa-lg"></span>
+          </button>
+        <button mat-icon-button>
+          <span style="color: red;" class="fa fa-minus fa-lg"></span>
+        </button>
       </mat-grid-tile-footer>
     </mat-grid-tile>
   </mat-grid-list>

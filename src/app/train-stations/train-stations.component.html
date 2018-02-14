@@ -1,3 +1,23 @@
-<p>
-  train-stations works!
-</p>
+<div style="text-align:center;">
+    <h1> Pick a Station </h1>
+</div>
+<div *ngIf="allStations" class="stations">
+    <mat-grid-list cols="2"  rowHeight="200px">
+        <mat-grid-tile *ngFor="let station of allStations" [routerLink] ="['/menu' , station.code]" appHighlight>
+            <img height="200px" src="" alt={{station.code}}>
+            <mat-grid-tile-footer>
+            <h1 mat-line> {{station.name | uppercase}} </h1>
+            </mat-grid-tile-footer>
+        </mat-grid-tile>
+    </mat-grid-list> 
+</div>
+
+<div [hidden]="allStations || getAllStationError">
+    <mat-spinner></mat-spinner>
+    <h4> Loading... Please Wait</h4>
+  </div>
+
+  <div *ngIf="getAllStationError">
+    <h2>Error</h2>
+    <h4>{{getAllStationError}}</h4>
+  </div>

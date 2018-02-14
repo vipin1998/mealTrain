@@ -7,12 +7,12 @@
  <form novalidate #loginForm="ngForm" (ngSubmit)="onSubmit()">
   <mat-dialog-content>
     <p>
-      <mat-input-container dividerColor="{{username.invalid && !username.pristine ? 'warn' : 'primary'}}">
-        <input matInput placeholder="UserName" type="text" [(ngModel)]="user.username" name="username" #username="ngModel" required>
+      <mat-input-container dividerColor="{{mobile.invalid && !mobile.pristine ? 'warn' : 'primary'}}">
+        <input matInput placeholder="Mobile Number" type="text" [(ngModel)]="user.mobile" name="mobile" #mobile="ngModel" required>
         <mat-hint>
-          <span [hidden]="username.pristine">
-            <span [hidden]="!username.errors?.required">
-                Username is Required
+          <span [hidden]="mobile.pristine">
+            <span [hidden]="!mobile.errors?.required">
+                Mobile Number is Required
             </span>
           </span>
         </mat-hint>
