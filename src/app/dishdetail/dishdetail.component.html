@@ -13,7 +13,7 @@
           <h3>{{  dish.name | uppercase }}</h3>
         </mat-card-title>
       </mat-card-header>
-      <img mat-card-image src="{{BaseURL + dish.image}}" alt="{{dish.name}}">
+      <img mat-card-image src="{{MongoURL + dish.image}}" alt="{{dish.name}}">
       <mat-card-content>
         <p> {{dish.description}}</p>
       </mat-card-content>
@@ -29,7 +29,7 @@
 
   <div fxFlex="40" *ngIf="dish">
     <h2>Comments</h2>
-    <mat-list-item *ngFor="let comment of dish.comments">
+    <mat-list-item *ngFor="let comment of dishComments">
       <p > {{comment.comment}} <br>
          {{comment.rating}} Stars <br>
          --{{comment.author}}
@@ -46,16 +46,6 @@
     </div>
 
     <form novalidate [formGroup]="commentForm" (ngSubmit)="onSubmit()">
-        <p>
-            <mat-input-container dividerColor="{{ formErrors.author ? 'warn' : 'primary'}}">
-              <input matInput formControlName="author" placeholder="Name" type="text" required>
-              <mat-hint>
-                  <span [hidden] = "!(formErrors.author)">
-                    {{formErrors.author}}
-                  </span>
-              </mat-hint>
-            </mat-input-container>
-        </p>
         <p>
           <mat-slider  formControlName="rating" min="1" max="5" step="1" thumbLabel tickInterval="1"></mat-slider>
         </p>

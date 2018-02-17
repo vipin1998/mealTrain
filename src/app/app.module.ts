@@ -41,6 +41,8 @@ import { TrainStationsComponent } from './train-stations/train-stations.componen
 import { TrainService } from './services/train.service';
 import { SignupComponent } from './signup/signup.component';
 import { UserService } from './services/user.service';
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import { AuthInterceptor, UnauthorizedInterceptor } from './services/user.interceptor';
 
 
 
@@ -80,7 +82,18 @@ import { UserService } from './services/user.service';
 
   ],
   providers: [ DishService,PromotionService,LeaderService,ProcessHttpmsgService ,TrainService,UserService,HttpClientModule,
-     { provide : 'BaseURL' ,useValue : baseURL} , { provide : 'MongoURL' ,useValue : mongoURL}],
+      { provide : 'MongoURL' ,useValue : mongoURL},
+      {
+        provide: HTTP_INTERCEPTORS,
+        useClass: AuthInterceptor,
+        multi: true
+      },
+      {
+        provide: HTTP_INTERCEPTORS,
+        useClass: UnauthorizedInterceptor,
+        multi: true
+      }
+    ],
   entryComponents : [LoginComponent,SignupComponent],
   bootstrap: [AppComponent]
 })

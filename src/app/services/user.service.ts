@@ -28,6 +28,7 @@ export class UserService {
  isAuthenticated: Boolean = false;
  name: Subject<string> = new Subject<string>();
  authToken: string = undefined;
+ fname : string;
 
   constructor(private http: HttpClient,
     private processHTTPMsgService: ProcessHttpmsgService) { 
@@ -45,7 +46,8 @@ export class UserService {
     })
   }
  
-  sendUsername(name: string) {
+  sendUsername(name: string) 
+  {
     this.name.next(name);
   }
 
@@ -55,16 +57,17 @@ export class UserService {
 
   loadUserCredentials() {
     var credentials = JSON.parse(localStorage.getItem(this.tokenKey));
-    console.log("loadUserCredentials ", credentials);
-    if (credentials && credentials.username != undefined) {
+    if (credentials && credentials.name != undefined) {
+      console.log("loadUserCredentials ", credentials);
       this.useCredentials(credentials);
+      /*
       if (this.authToken)
         this.checkJWTtoken();
+        */
     }
   }
 
-  storeUserCredentials(credentials: any) {
-    console.log("storeUserCredentials ", credentials);    
+  storeUserCredentials(credentials: any) {   
     localStorage.setItem(this.tokenKey, JSON.stringify(credentials));
     this.useCredentials(credentials);
   }
@@ -73,6 +76,7 @@ export class UserService {
     this.isAuthenticated = true;
     this.sendUsername(credentials.name);
     this.authToken = credentials.token;
+    this.fname = credentials.name;
   }
 
   destroyUserCredentials() {
@@ -91,11 +95,13 @@ export class UserService {
       .catch(error => { return this.processHTTPMsgService.handleError(error); });
   }
 
-  logIn(user: any): Observable<any> {
+  logIn(user: any): Observable<any> 
+  {
     return this.http.post<AuthResponse>(mongoURL + 'user/login', 
       {"phone": user.mobile, "password": user.password})
       .map(res => {
-        return {'success': res.success, 'status' : res.status , 'username': user.name };
+        this.storeUserCredentials({name: res.status, token: res.token});
+        return {'success': res.success, 'status' : res.status , 'username': user.fname };
       })
         .catch(error => { return this.processHTTPMsgService.handleError(error); });
   }
@@ -110,6 +116,10 @@ export class UserService {
 
   getUsername(): Observable<string> {
     return this.name.asObservable();
+  }
+
+  getName() : string{
+    return this.fname;
   }
 
   getToken(): string {

@@ -6,8 +6,10 @@
       <a mat-button routerLink='/myorders' routerLinkActive='active' ><span class="fa fa-user-o fa-lg"></span> My Orders</a>  
       <a mat-button routerLink='/contactus' routerLinkActive='active'><span class="fa fa-address-card fa-lg"></span> Contact</a>
       <span class="flex-spacer"></span>
-      <a mat-button (click)="openLogInForm()"><span class="fa fa-sign-in fa-lg"></span> LogIn</a>
-      <a mat-button (click)="openSignUpForm()"><span class="fa fa-user-plus fa-lg"></span> Register </a>
+      <a mat-button *ngIf="!username" (click)="openLogInForm()"><span class="fa fa-sign-in fa-lg"></span> LogIn</a>
+      <a mat-button *ngIf="!username" (click)="openSignUpForm()"><span class="fa fa-user-plus fa-lg"></span> Register </a>
+      <a *ngIf="username">{{username}}</a>
+      <a *ngIf="username" mat-button (click)="logOut()"><span class="fa fa-sign-out fa-lg"></span> Logout</a> 
   </mat-toolbar>
 </div>
 <div fxShow="true" fxHide.gt-sm="true">

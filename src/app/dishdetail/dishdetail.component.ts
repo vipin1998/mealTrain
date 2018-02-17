@@ -18,16 +18,11 @@ export class DishdetailComponent implements OnInit {
 
   commentForm : FormGroup;
   comment : Comment;
+  dishComments : Comment[];
   formErrors = {
-    'author' : '',
     'comment' : ''
   };
   validationMessages = {
-    'author' : {
-      'required' : 'Author Name is Required',
-      'minlength' : 'Author Name must be atleast 2 character long',
-      'maxlength' : 'Author Name can not be more than 25 character'
-    },
     'comment' : {
       'required' : 'Your Comment is Required',
     }
@@ -45,14 +40,13 @@ export class DishdetailComponent implements OnInit {
      private route : ActivatedRoute,
      private location : Location,
      private cmf : FormBuilder,
-       @Inject('BaseURL') private BaseURL) {
+       @Inject('MongoURL') private MongoURL) {
       this.createFrom();
     }
 
     createFrom()
     {
       this.commentForm = this.cmf.group({
-        author : ['',[Validators.required,Validators.minLength(2),Validators.maxLength(25)]],
         comment : ['',Validators.required],
         rating : '',
         date : new Date()
@@ -84,10 +78,20 @@ export class DishdetailComponent implements OnInit {
   {
     this.comment = this.commentForm.value;
 
-    this.dishCopy.comments.push(this.comment);
-
-    this.dishCopy.save()
-      .subscribe(dish => this.dish = dish)
+    this.route.params
+      .switchMap((params: Params) => this.dishService.addComment(this.comment,+params['id']))
+      .subscribe(res => {
+        if (res.success) {
+          alert('Comment added SuccessFully');        
+        }
+        else {
+          alert('Alert Something went Wrong');
+        }
+      },
+      error => {
+        console.log(error);
+        this.errMess = error
+      })
 
     this.commentForm.reset({
       author : '',
@@ -99,11 +103,16 @@ export class DishdetailComponent implements OnInit {
 
 
   ngOnInit() {
-    this.dishService.getDishIds().subscribe(dishIds => this.dishIds = dishIds);
+    //this.dishService.getDishIds().subscribe(dishIds => this.dishIds = dishIds);
     this.route.params
       .switchMap((params: Params) => this.dishService.getDish(+params['id']))
       .subscribe(dish => { this.dish = dish; this.dishCopy = dish; this.setPrevNext(dish.id);},
       errmess =>this.errMess = <any>errmess);
+    this.route.params
+      .switchMap((params: Params) => this.dishService.getDishComment(+params['id']))
+      .subscribe(comments => { this.dishComments = comments;},
+      errmess =>this.errMess = <any>errmess);
+    
   }
 
 
@@ -116,6 +125,4 @@ export class DishdetailComponent implements OnInit {
   goBack() : void{
     this.location.back();
   }
-
-
 }

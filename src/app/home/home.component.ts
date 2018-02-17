@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit {
   constructor( private dishService : DishService,
                private promotionService: PromotionService,
                private leaderService : LeaderService,
-               @Inject('BaseURL') private BaseURL
+               @Inject('MongoURL') private MongoURL
             ) { }
 
   ngOnInit() {

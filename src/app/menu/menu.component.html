@@ -4,6 +4,13 @@
 
 
 <div fxFlex>
+    <h3> Cart </h3>
+    <div *ngFor="let item of cart">
+      <p> {{ item.name}} {{item.price}}</p>
+    </div>
+</div>
+
+<div fxFlex>
   <div>
     <h3> Menu </h3>
     <hr>
@@ -12,16 +19,19 @@
 
 <div fxFlex *ngIf="dishes">
   <mat-grid-list cols="2"  rowHeight="200px">
-    <mat-grid-tile *ngFor="let dish of dishes" [routerLink] ="['/dishdetail',dish.id]" appHighlight>
-      <img height="200px" src="{{BaseURL + dish.image}}" alt={{dish.name}}>
+    <mat-grid-tile *ngFor="let dish of dishes"  appHighlight>
+      <img height="200px" src="{{MongoURL + dish.image}}" alt={{dish.name}}>
+      <mat-grid-tile-header style="background-color:transparent">
+        <a  style="background-color:rgb(95, 16, 221)" target="_blank" [routerLink] ="['/dishdetail',dish.id]" mat-button>Show Details</a>
+      </mat-grid-tile-header>
       <mat-grid-tile-footer>
         <h1 mat-line> {{dish.name | uppercase}} </h1>
         <span class="flex-spacer"></span>
         <button mat-icon-button>
-            <span style="color: red;" class="fa fa-plus fa-lg"></span>
+            <span style="color:rgb(22, 22, 235);" (click)="addToCart(dish)" class="fa fa-plus fa-lg"></span>
           </button>
         <button mat-icon-button>
-          <span style="color: red;" class="fa fa-minus fa-lg"></span>
+          <span style="color: rgb(36, 36, 190);"  (click)="removeFromCart(dish)" class="fa fa-minus fa-lg"></span>
         </button>
       </mat-grid-tile-footer>
     </mat-grid-tile>

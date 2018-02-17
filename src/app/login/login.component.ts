@@ -23,11 +23,9 @@ export class LoginComponent implements OnInit
     this.userService.logIn(this.user)
       .subscribe(res => {
         if (res.success) {
-          this.dialogRef.close(res.success);
-          alert(res.status);         
+          this.dialogRef.close(res.success);        
         }
         else {
-          alert(res.status)
         }
       },
       error => {
