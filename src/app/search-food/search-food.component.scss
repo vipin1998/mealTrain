@@ -1,4 +1,11 @@
-.main{
-    padding : 50px;
-    background-color : rgb(231, 229, 235);
+$background-pale: rgb(238, 236, 241);
+
+@mixin zero-margin($pad-up-down, $pad-left-right) {
+    margin: 0px auto;
+    padding: $pad-up-down $pad-left-right;
+}
+
+.search{
+    background-color: $background-pale;
+    @include zero-margin(20px, 0px);
 }

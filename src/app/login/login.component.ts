@@ -11,6 +11,7 @@ export class LoginComponent implements OnInit
 {  
   errMess: string;
   user = {remember:false,mobile :"",password : ""};
+  wrongCredentials : string;
 
   constructor( private dialogRef : MatDialogRef<LoginComponent>,private userService: UserService) { }
 
@@ -23,14 +24,14 @@ export class LoginComponent implements OnInit
     this.userService.logIn(this.user)
       .subscribe(res => {
         if (res.success) {
-          this.dialogRef.close(res.success);        
-        }
-        else {
+          this.dialogRef.close(res.success); 
+          this.wrongCredentials = undefined;      
         }
       },
       error => {
         console.log(error);
         this.errMess = error
+        this.wrongCredentials = "InValid Mobile or Password"
       })
   }
 }

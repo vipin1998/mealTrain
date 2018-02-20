@@ -1,33 +1,58 @@
+<div class="container search"
+    fxLayout="row" 
+    fxLayout.sm="column" 
+    fxLayout.xs="column"
+    fxLayoutAlign.xs="start center" 
+    fxLayoutAlign.sm="start center"
+    fxLayoutAlign.gt-sm="center center" 
+    fxLayoutWrap 
+    fxLayoutGap="10px">
+  <div fxFlex="100%" fxFlex.gt-sm="35%" fxFlexOffset="20px">
+    <div class="form">
+      <div>
+      <h2> Order Food at MealTrian</h2>
+      </div>
+      <form novalidate [formGroup]="queryForm" (ngSubmit)="onSubmit()">
+          <p>
+              <mat-input-container dividerColor="{{ formErrors.train_number ? 'warn' : 'primary'}}">
+                <input matInput formControlName="train_number" placeholder="Train Number" type="text" required>
+                <mat-hint>
+                  <span [hidden] = "!(formErrors.train_number)">
+                    {{formErrors.train_number}}
+                  </span>
+                </mat-hint>
+              </mat-input-container>
+          </p>
+          <p>
+              
+              <mat-form-field dividerColor="{{ formErrors.journey_date ? 'warn' : 'primary'}}">
+                  <input matInput formControlName="journey_date" [matDatepicker]="picker" placeholder="Choose a date">
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                  <mat-hint>
+                    <span [hidden] = "!(formErrors.journey_date)">
+                      {{formErrors.journey_date}}
+                    </span>
+                  </mat-hint>
+                </mat-form-field>
 
-            <div class="form" class="main">
-            <h2> Order Food at MealTrian</h2>
-            <form novalidate [formGroup]="queryForm" (ngSubmit)="onSubmit()">
-                <p>
-                    <mat-input-container dividerColor="{{ formErrors.train_number ? 'warn' : 'primary'}}">
-                      <input matInput formControlName="train_number" placeholder="Train Number" type="text" required>
-                      <mat-hint>
-                        <span [hidden] = "!(formErrors.train_number)">
-                          {{formErrors.train_number}}
-                        </span>
-                      </mat-hint>
-                    </mat-input-container>
-                </p>
-                <p>
-                    
-                    <mat-form-field dividerColor="{{ formErrors.journey_date ? 'warn' : 'primary'}}">
-                        <input matInput formControlName="journey_date" [matDatepicker]="picker" placeholder="Choose a date">
-                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                        <mat-datepicker #picker></mat-datepicker>
-                        <mat-hint>
-                          <span [hidden] = "!(formErrors.journey_date)">
-                            {{formErrors.journey_date}}
-                          </span>
-                        </mat-hint>
-                      </mat-form-field>
+          </p>
+          <button type="submit" [routerLink] ="['/train', queryForm.value.train_number]" mat-button class="background-primary text-floral-white" [disabled]="queryForm.invalid">
+              Search Food
+            </button>
+      </form>
+    </div>
+  </div>
+  <div fxFlex="100%" fxFlex.gt-sm="55%">
+    <div>
+      <h2> Benefits of MealTrain </h2>
+      <mat-list>
+          <mat-list-item>Book Food on 350+ Stations in India</mat-list-item>
+          <mat-list-item>24 * 7 Customer Care Service </mat-list-item>
+          <mat-list-item>Free Delivery of Order on Your Seat</mat-list-item>
+          <mat-list-item>Read Review on a Dish From Customers</mat-list-item>
+      </mat-list>
 
-                </p>
-                <button type="submit" [routerLink] ="['/train', queryForm.value.train_number]" mat-button class="background-primary text-floral-white" [disabled]="queryForm.invalid">
-                    Search Food
-                  </button>
-            </form>
-          </div>
+    </div>
+  </div>
+</div>

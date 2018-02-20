@@ -3,7 +3,9 @@
     <button mat-button mat-dialog-close>&times;</button>
 </mat-toolbar>
 
-<p>{{ user | json }}</p>
+<div *ngIf="wrongCredentials">
+  <p style="color:red" >{{wrongCredentials}}</p>
+</div>
  <form novalidate #loginForm="ngForm" (ngSubmit)="onSubmit()">
   <mat-dialog-content>
     <p>

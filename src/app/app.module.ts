@@ -72,6 +72,7 @@ import { AuthInterceptor, UnauthorizedInterceptor } from './services/user.interc
     HttpModule ,
     HttpClientModule,
 
+    MatSelectModule,
     MatButtonModule, MatCheckboxModule, MatDatepickerModule, MatFormFieldModule,
     MatInputModule, MatRadioModule, MatSelectModule, MatSliderModule,MatNativeDateModule,
     MatSlideToggleModule, MatToolbarModule, MatListModule, MatGridListModule,

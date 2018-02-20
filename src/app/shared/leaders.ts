@@ -31,7 +31,7 @@ export const LEADERS: Leader[] = [
       {
         id: 3,
         name: 'Vipin Kumar',
-        image: '/assets/images/alberto.png',
+        image: '/assets/images/vipin.jpg',
         designation: 'Executive Chef',
         abbr: 'EC',
         featured: true,

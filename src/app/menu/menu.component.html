@@ -22,7 +22,9 @@
     <mat-grid-tile *ngFor="let dish of dishes"  appHighlight>
       <img height="200px" src="{{MongoURL + dish.image}}" alt={{dish.name}}>
       <mat-grid-tile-header style="background-color:transparent">
-        <a  style="background-color:rgb(95, 16, 221)" target="_blank" [routerLink] ="['/dishdetail',dish.id]" mat-button>Show Details</a>
+        <a style="background-color:rgb(95, 16, 221)" target="_blank" [routerLink] ="['/dishdetail',dish.id]" mat-button>Show Details</a>
+        <span class="flex-spacer"></span>
+        <p style="color:rgb(48, 48, 145);"> Rs {{dish.price}}</p>
       </mat-grid-tile-header>
       <mat-grid-tile-footer>
         <h1 mat-line> {{dish.name | uppercase}} </h1>

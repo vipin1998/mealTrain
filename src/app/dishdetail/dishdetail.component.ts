@@ -84,13 +84,10 @@ export class DishdetailComponent implements OnInit {
         if (res.success) {
           alert('Comment added SuccessFully');        
         }
-        else {
-          alert('Alert Something went Wrong');
-        }
       },
       error => {
         console.log(error);
-        this.errMess = error
+        alert('Please LogIn First');
       })
 
     this.commentForm.reset({
