@@ -2,13 +2,51 @@
      fxLayout="column"
      fxLayoutGap="10px">
 
+<div class="card" *ngIf="cart.length>0">
+    <mat-card>
+      <mat-card-header>
+        <img mat-card-avatar src="/assets/images/cart.jpg">
+        <mat-card-title>
+          <h2>Cart</h2>
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div *ngFor="let item of cart">
+              <div class="container">
+                <div class="leftpane">
+                    <h3 class="test"> {{ item.name}} </h3>
+                </div>
+                <div class="middlepane">
+                    <h3>{{item.price}} </h3>
+                </div>
+                <div>
+                    <button mat-icon-button class="pnrbutton">
+                        <span style="color: rgb(36, 36, 190);"  (click)="removeFromCart(item)" class="fa fa-minus fa-lg"></span>
+                    </button>
+                </div>
+              </div>
+        </div>
+        <div class="container">
+          <div class="pnrforms">
+            <form [formGroup]="pnrForm" (ngSubmit)="onSubmit()">
+                <mat-input-container dividerColor="{{ formErrors.pnr ? 'warn' : 'primary'}}">
+                    <input formControlName="pnr" class="test" matInput placeholder="Enter PNR Number" type="text" required>
+                    <mat-hint>
+                        <span [hidden] = "!(formErrors.pnr)">
+                          {{formErrors.pnr}}
+                        </span>
+                    </mat-hint>
+                </mat-input-container>
+            </form>
+          </div>
+          <div class="leftpane">
+            <button type="submit" (click)="onSubmit()" mat-button class="background-primary text-floral-white" [disabled]="pnrForm.invalid">Pay {{ammount}}</button>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
 
-<div fxFlex>
-    <h3> Cart </h3>
-    <div *ngFor="let item of cart">
-      <p> {{ item.name}} {{item.price}}</p>
-    </div>
-</div>
 
 <div fxFlex>
   <div>
@@ -32,9 +70,6 @@
         <button mat-icon-button>
             <span style="color:rgb(22, 22, 235);" (click)="addToCart(dish)" class="fa fa-plus fa-lg"></span>
           </button>
-        <button mat-icon-button>
-          <span style="color: rgb(36, 36, 190);"  (click)="removeFromCart(dish)" class="fa fa-minus fa-lg"></span>
-        </button>
       </mat-grid-tile-footer>
     </mat-grid-tile>
   </mat-grid-list>

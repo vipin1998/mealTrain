@@ -3,7 +3,7 @@
 </div>
 <div *ngIf="allStations" class="stations">
     <mat-grid-list cols="2"  rowHeight="200px">
-        <mat-grid-tile *ngFor="let station of allStations" [routerLink] ="['/menu' , station.code]" appHighlight>
+        <mat-grid-tile *ngFor="let station of allStations" [routerLink] ="['/menu' ,trainNumber, station.code]" appHighlight>
             <img height="200px" src="" alt={{station.code}}>
             <mat-grid-tile-footer>
             <h1 mat-line> {{station.name | uppercase}} </h1>

@@ -4,13 +4,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatCheckboxModule, MatDatepickerModule, MatFormFieldModule,
   MatInputModule, MatRadioModule, MatSelectModule, MatSliderModule,MatNativeDateModule,
   MatSlideToggleModule, MatToolbarModule, MatListModule, MatGridListModule,MatSidenavModule,
-  MatCardModule, MatIconModule, MatProgressSpinnerModule, MatDialogModule } from '@angular/material';
+  MatCardModule, MatIconModule, MatProgressSpinnerModule, MatDialogModule, MatAutocompleteModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms'; 
 import { ReactiveFormsModule } from '@angular/forms'; 
 import { baseURL , mongoURL } from './shared/baseurl'
 import { HttpModule } from '@angular/http';
 import { HttpClient,HttpClientModule } from '@angular/common/http';
+import { Ng2AutoCompleteModule } from 'ng2-auto-complete';
 
 import 'hammerjs';
 
@@ -43,7 +44,7 @@ import { SignupComponent } from './signup/signup.component';
 import { UserService } from './services/user.service';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import { AuthInterceptor, UnauthorizedInterceptor } from './services/user.interceptor';
-
+import { LoadingModule } from 'ngx-loading';
 
 
 @NgModule({
@@ -61,7 +62,7 @@ import { AuthInterceptor, UnauthorizedInterceptor } from './services/user.interc
     MyordersComponent,
     SearchFoodComponent,
     TrainStationsComponent,
-    SignupComponent
+    SignupComponent,
   ],
   imports: [
     BrowserModule,
@@ -71,19 +72,20 @@ import { AuthInterceptor, UnauthorizedInterceptor } from './services/user.interc
     ReactiveFormsModule,
     HttpModule ,
     HttpClientModule,
+    LoadingModule,
 
     MatSelectModule,
     MatButtonModule, MatCheckboxModule, MatDatepickerModule, MatFormFieldModule,
     MatInputModule, MatRadioModule, MatSelectModule, MatSliderModule,MatNativeDateModule,
     MatSlideToggleModule, MatToolbarModule, MatListModule, MatGridListModule,
     MatCardModule, MatIconModule, MatProgressSpinnerModule, MatDialogModule,MatSidenavModule,
-
-    AppRoutingModule,
+    AppRoutingModule,MatAutocompleteModule,
     RestangularModule.forRoot(RestangularConfigFactory)
 
   ],
-  providers: [ DishService,PromotionService,LeaderService,ProcessHttpmsgService ,TrainService,UserService,HttpClientModule,
-      { provide : 'MongoURL' ,useValue : mongoURL},
+  providers: [ DishService,PromotionService,LeaderService,ProcessHttpmsgService ,
+                TrainService,UserService,HttpClientModule,
+                { provide : 'MongoURL' ,useValue : mongoURL},
       {
         provide: HTTP_INTERCEPTORS,
         useClass: AuthInterceptor,

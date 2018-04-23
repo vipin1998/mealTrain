@@ -1,3 +1,3 @@
 export class Train{
-    number : number
+    number : string
 }

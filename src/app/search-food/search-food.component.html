@@ -15,16 +15,18 @@
       <form novalidate [formGroup]="queryForm" (ngSubmit)="onSubmit()">
           <p>
               <mat-input-container dividerColor="{{ formErrors.train_number ? 'warn' : 'primary'}}">
-                <input matInput formControlName="train_number" placeholder="Train Number" type="text" required>
-                <mat-hint>
-                  <span [hidden] = "!(formErrors.train_number)">
-                    {{formErrors.train_number}}
-                  </span>
-                </mat-hint>
+                  <input matInput formControlName="train_number" placeholder="Train Number" type="text" [(ngModel)]="queryStr" (keyup)="filter()" [matAutocomplete]="auto" required>
               </mat-input-container>
+                
+              <mat-autocomplete #auto="matAutocomplete">
+                <span *ngIf="filteredList.length > 0">
+                  <mat-option *ngFor="let option of filteredList" [value]="option">
+                    {{ option }}
+                  </mat-option>
+                </span>
+              </mat-autocomplete>  
           </p>
           <p>
-              
               <mat-form-field dividerColor="{{ formErrors.journey_date ? 'warn' : 'primary'}}">
                   <input matInput formControlName="journey_date" [matDatepicker]="picker" placeholder="Choose a date">
                   <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>

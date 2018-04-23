@@ -1,0 +1,41 @@
+.test {
+    display: inline-block;
+    padding-left:5%;
+}
+.card{
+    padding-left: 15%;
+    padding-right: 15%;
+}
+
+.leftpane {
+    width: 50%;
+    height: 100%;
+    float: left;
+    border-collapse: collapse;
+}
+
+.middlepane {
+    width: 25%;
+    height: 100%;
+    float: left;
+    border-collapse: collapse;
+}
+
+.rightpane {
+  width: 25%;
+  height: 100%;
+  position: relative;
+  float: right;
+  border-collapse: collapse;
+}
+
+.pnrforms{
+    width: 40%;
+    padding-left: 5%; 
+}
+
+.pnrbutton{
+    width: 50%;
+    position: relative;
+    float: right;
+}

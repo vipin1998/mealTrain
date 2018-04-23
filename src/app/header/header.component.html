@@ -12,6 +12,7 @@
       <a *ngIf="username" mat-button (click)="logOut()"><span class="fa fa-sign-out fa-lg"></span> Logout</a> 
   </mat-toolbar>
 </div>
+
 <div fxShow="true" fxHide.gt-sm="true">
   <mat-toolbar color="primary">
       <span><img src="/assets/images/logo.png" height=30 width=41></span>
@@ -31,7 +32,6 @@
         <a mat-button (click)="openLogInForm()"><span class="fa fa-sign-in fa-lg"></span> LogIn</a>
         <a mat-button (click)="openSignUpForm()"><span class="fa fa-user-plus fa-lg"></span> Register </a>
       </div>
-
     </mat-sidenav>
     <mat-sidenav-content fxFlexFill>
 

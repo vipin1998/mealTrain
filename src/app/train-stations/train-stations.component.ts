@@ -14,6 +14,7 @@ export class TrainStationsComponent implements OnInit {
   trainStations : Station[];
   getAllStationError : string;
   getTrainStationError : string;
+  trainNumber :number;
 
   constructor( private trainService : TrainService,
       private route : ActivatedRoute,
@@ -24,9 +25,12 @@ export class TrainStationsComponent implements OnInit {
         .subscribe(stat => this.allStations = stat,
         errmess => this.getAllStationError = <any>errmess);
 
+    this.trainNumber = this.route.snapshot.params['trainNumber']
+
     this.route.params
     .switchMap((params: Params) => this.trainService.getTrainStation(+params['trainNumber']))
     .subscribe(stat => { this.trainStations = stat;} ,
-      errmess => this.getTrainStationError = <any>errmess);    
+      errmess => this.getTrainStationError = <any>errmess);  
+
   }
 }

@@ -1,10 +1,10 @@
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
 <mat-toolbar mat-dialog-title color="primary">Register
     <span class="flex-spacer"></span>
       <button mat-button mat-dialog-close>&times;</button>
   </mat-toolbar>
   
   <div>
-    <p>{{ user | json }}</p>
    <form novalidate #loginForm="ngForm" (ngSubmit)="onSubmit()">
     <mat-dialog-content>
       <p>
@@ -39,11 +39,13 @@
             </span>
           </mat-hint>
           </mat-input-container>
-        <mat-select placeholder="Sex" [(ngModel)]="user.sex" name="sex">
-          <mat-option *ngFor="let ctype of sex" [value]="ctype">
-            {{ctype}}
-          </mat-option>
-        </mat-select>
+          <mat-form-field>
+            <mat-select placeholder="Sex" [(ngModel)]="user.sex" name="sex" required>
+              <mat-option *ngFor="let ctype of sex" [value]="ctype">
+                {{ctype}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
       </p>
     </mat-dialog-content>
     <mat-dialog-actions>

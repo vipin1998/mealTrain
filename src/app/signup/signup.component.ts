@@ -10,6 +10,8 @@ import { UserService } from '../services/user.service'
 })
 export class SignupComponent implements OnInit {
 
+  public loading = false;
+
   user = {fname : "",mobile:"",sex:"",password:""};
 
   sex  = ["Male" , "Female" , "Other"]
@@ -23,8 +25,10 @@ export class SignupComponent implements OnInit {
 
   onSubmit()
   {
+    this.loading = true;
     this.userService.signUp(this.user)
       .subscribe(res => {
+        this.loading = false;
         if (res.success) {
           this.dialogRef.close(res.success);
           alert(res.status);         
@@ -34,7 +38,8 @@ export class SignupComponent implements OnInit {
         }
       },
       error => {
-        console.log(error);
+        this.loading = false;
+        alert(error)
         this.errMess = error
       })
 
